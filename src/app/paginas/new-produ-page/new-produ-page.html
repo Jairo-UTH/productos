@@ -1,0 +1,85 @@
+<div class="product-page">
+
+  <mat-card class="product-card">
+
+    <mat-card-header>
+      <mat-card-title> Crear producto </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form class="product-form">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Categoria</mat-label>
+
+          <mat-select [formField]="productForm.categoryId"></mat-select>
+
+          <!-- NECESITO BACKEND AQUI CODIGO ESTA BUENO -->
+
+          <mat-select>
+            <!--@for (category of categories(); track $index)
+            {
+              <math-option value="{{category.categoryId}}">{{category.name}}</math-option>
+            }-->
+            <mat-option value="">name</mat-option>
+          </mat-select>
+
+
+
+        </mat-form-field>
+
+        <!-- Nombre -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput [formField]="productForm.name">
+        </mat-form-field>
+
+
+        <!-- Precio y cantidad -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Precio</mat-label>
+            <input matInput type="number"   [formField]="productForm.price">
+            <span matTextPrefix>S/</span>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" [formField]="productForm.stockQuantity">
+          </mat-form-field>
+
+        </div>
+
+        <input #fileInput type="file" accept="image/*" hidden (change)="onFileSelected($event)">
+        <button mat-stroked-button type="button" (click)="fileInput.click()">
+          <mat-icon>upload</mat-icon>
+          <span>
+            {{selectedFile()?.name ?? 'Seleccionar imagen'}}
+            
+          </span>
+        </button>
+      </form>
+
+    </mat-card-content>
+
+
+    <mat-card-actions class="form-actions">
+
+      <button mat-stroked-button type="button" (click)="cleanForm()">
+        <mat-icon>clear</mat-icon>
+        Limpiar
+      </button>
+
+
+      <button mat-flat-button color="primary" type="button" (click)="createProduct()">
+        <mat-icon>add</mat-icon>
+        Crear
+      </button>
+
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>
